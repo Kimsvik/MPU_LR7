@@ -14,7 +14,7 @@ import matplotlib.pyplot as plt
 import matplotlib.gridspec as gridspec
 import matplotlib.patches as patches
 
-dataset = "C:/Users/Сергей/PycharmProjects/MPU_LR7/dataset.txt"
+dataset = "C:/Users/Сергей/PycharmProjects/MPU_LR7/dataset3.txt"
 df_nino = pd.read_table(dataset)
 N = df_nino.shape[0]
 t0=0
@@ -124,15 +124,18 @@ ylabel = 'Период'
 xlabel = 'Время'
 
 fig = plt.figure(figsize=(12,12))
-spec = gridspec.GridSpec(ncols=6, nrows=6)
+spec = gridspec.GridSpec(ncols=5, nrows=7)
 top_ax = fig.add_subplot(spec[0, 0:5])
-bottom_left_ax = fig.add_subplot(spec[1:, 0:5])
-bottom_right_ax = fig.add_subplot(spec[1:, 5])
+bottom_left_ax1 = fig.add_subplot(spec[2:4, 0:5])
+bottom_left_ax2 = fig.add_subplot(spec[5:, 0:5])
+#bottom_right_ax1 = fig.add_subplot(spec[1, 5])
 
 plot_signal_plus_average(top_ax, time, signal, average_over = 3)
-yticks, ylim = plot_wavelet(bottom_left_ax, time, signal, scales, xlabel=xlabel, ylabel=ylabel, title=title, waveletname='morl')
+yticks1, ylim1 = plot_wavelet(bottom_left_ax1, time, signal, scales, xlabel=xlabel, ylabel=ylabel, title='Вейвлет Морле', waveletname='morl')
+yticks2, ylim2 = plot_wavelet(bottom_left_ax2, time, signal, scales, xlabel=xlabel, ylabel=ylabel, title='Мексиканская шляпа', waveletname='mexh')
 
-plot_fft_plus_power(bottom_right_ax, time, signal, plot_direction='vertical', yticks=yticks, ylim=ylim)
-bottom_right_ax.set_ylabel('Период', fontsize=14)
+#plot_fft_plus_power(bottom_right_ax, time, signal, plot_direction='vertical', yticks=yticks1, ylim=ylim1)
+#plot_fft_plus_power(bottom_right_ax, time, signal, plot_direction='vertical', yticks=yticks2, ylim=ylim2)
+#bottom_right_ax.set_ylabel('Период', fontsize=14)
 plt.tight_layout()
 plt.show()

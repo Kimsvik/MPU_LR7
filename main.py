@@ -45,6 +45,18 @@ def get_ave_values(xvalues, yvalues, n = 5):
 def f(t):
     return mgn * np.sin(2 * np.pi * t / T) + mgn/5 * np.sin(20 * np.pi * t / T) + mgn/20 * np.sin(50 * np.pi * t / T)
 
+def f_sin(t):
+    return 1 * np.sin(2 * np.pi * t / 50)
+
+def f_rev_sin(t):
+    return 1 / (1 * np.sin(2 * np.pi * t / 50))
+
+def f_exp(t):
+    return np.exp(t)
+
+def f_tg(t):
+    return np.tg(t)
+
 
 class wavelet:
     def __init__(self, func):
@@ -191,7 +203,7 @@ class wavelet:
 
         return res
 
-dataset = "C:/Users/Сергей/PycharmProjects/MPU_LR7/dataset1.txt"
+dataset = "C:/Users/Сергей/PycharmProjects/MPU_LR7/dataset3.txt"
 df_nino = pd.read_table(dataset)
 N = 2 ** size(df_nino.shape[0])
 t0=0
@@ -211,5 +223,5 @@ wl = wavelet(y)
 
 
 haara = wl.haara(5, 0)
-dobeshi = wl.dobeshi(5, 0.5)
+dobeshi = wl.dobeshi(5, 0)
 
